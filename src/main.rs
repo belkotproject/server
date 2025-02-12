@@ -5,8 +5,9 @@ async fn index() -> impl Responder {
     HttpResponse::Ok().body("Welcome to the server")
 }
 
-async fn catch_all() -> impl Responder {
-    HttpResponse::Ok().body("HELLo")
+async fn catch_all(path: web::Path<String>) -> impl Responder {
+    let url = path.into_inner();
+    HttpResponse::Ok().body(url)
 }
 
 #[actix_web::main]
